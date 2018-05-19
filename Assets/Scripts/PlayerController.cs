@@ -2,7 +2,6 @@
 
 public class PlayerController : MonoBehaviour
 {
-
     [Header("Speeds: ")]
     [Tooltip("This is the spped of the player.")]
     public float playerSpeed = 1f;
