@@ -394,11 +394,11 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1042220131}
+  - component: {fileID: 1042220126}
   - component: {fileID: 1042220130}
   - component: {fileID: 1042220129}
   - component: {fileID: 1042220128}
   - component: {fileID: 1042220127}
-  - component: {fileID: 1042220126}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -417,7 +417,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc23bda7e412c2f428964d19e2687255, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 2
+  playerSpeed: 0.8
+  jumpHeight: 4.5
 --- !u!65 &1042220127
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -443,7 +444,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 72
+  m_Constraints: 88
   m_CollisionDetection: 0
 --- !u!23 &1042220129
 MeshRenderer:
