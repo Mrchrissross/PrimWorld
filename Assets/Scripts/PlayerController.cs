@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody   rb;
     private Vector3     velocity = Vector3.zero;
     private float       xMov;
+    public int          jumps; // <-----------
     private bool        isGrounded,                 
                         jump;                       
 
@@ -30,12 +31,15 @@ public class PlayerController : MonoBehaviour
         #region Jumping
         Vector3 direction = transform.TransformDirection(Vector3.down);
 
-        if (Physics.Raycast(transform.position, direction, 1.2f))
+        if (Physics.Raycast(transform.position, direction, 0.55f))                  // Taken down to .55f
+        {
+            jumps = 0;
             isGrounded = true;
+        }
         else
             isGrounded = false;
 
-        if (isGrounded)
+        if ((isGrounded) || (jumps < 2))                                            // <-------------    
             if (Input.GetButtonDown("Jump"))
                 jump = true;
         #endregion
@@ -51,9 +55,22 @@ public class PlayerController : MonoBehaviour
         #region Jumping
         if (jump)
         {
-            GetComponent<Rigidbody>().AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
-            jump = false;
+            if (jumps < 2)                                                                                  //<----------
+            {
+                GetComponent<Rigidbody>().AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
+                jumps += 1;                                                                                 //<---------
+                jump = false;
+            }
         }
         #endregion
+    }
+                                                                //new
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "SpawnPoint")
+        {
+            DataManager.PlayerSpawnPosition = other.transform;
+            DataManager.SpawnLocation = other.name;
+        }
     }
 }
