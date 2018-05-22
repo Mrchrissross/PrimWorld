@@ -3,17 +3,23 @@
 public class PlayerController : MonoBehaviour
 {
     [Header("Speeds: ")]                           
-    [Tooltip("This is the speed of the player."), Range(0, 1)]
-    public float playerSpeed = 1f;
-    [Tooltip("The height that the player can jump."), Range(1, 10)]
-    public float jumpHeight = 4.5f;
+        [Tooltip("This is the speed of the player."), Range(0, 1)]
+        public float playerSpeed = 1f;
+
+        [Tooltip("The height that the player can jump."), Range(1, 10)]
+        public float jumpHeight = 4.5f;
+
+    [Header("Health: ")]
+        [Tooltip("This the number of hits your character can take before dying.")]
+        public int health = 3;
 
     private Rigidbody   rb;
     private Vector3     velocity = Vector3.zero;
     private float       xMov;
-    public int          jumps; // <-----------
-    private bool        isGrounded,                 
-                        jump;                       
+    private int         jumps;
+    private bool        isGrounded,
+                        jump,
+                        hit;
 
     void Start ()
     {
@@ -31,7 +37,7 @@ public class PlayerController : MonoBehaviour
         #region Jumping
         Vector3 direction = transform.TransformDirection(Vector3.down);
 
-        if (Physics.Raycast(transform.position, direction, 0.55f))                  // Taken down to .55f
+        if (Physics.Raycast(transform.position, direction, 0.55f))                
         {
             jumps = 0;
             isGrounded = true;
@@ -39,9 +45,22 @@ public class PlayerController : MonoBehaviour
         else
             isGrounded = false;
 
-        if ((isGrounded) || (jumps < 2))                                            // <-------------    
+        if ((isGrounded) || (jumps < 2))                                         
             if (Input.GetButtonDown("Jump"))
                 jump = true;
+        #endregion
+
+        #region Health
+        if(hit == true)
+        {
+            health -= 1;
+
+            if (health == 0)
+                DataManager.GameOver = true;
+
+            hit = false;
+        }
+
         #endregion
     }
 
@@ -55,16 +74,16 @@ public class PlayerController : MonoBehaviour
         #region Jumping
         if (jump)
         {
-            if (jumps < 2)                                                                                  //<----------
+            if (jumps < 2)                                                                              
             {
                 GetComponent<Rigidbody>().AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
-                jumps += 1;                                                                                 //<---------
+                jumps += 1;                                                                                 
                 jump = false;
             }
         }
         #endregion
     }
-                                                                //new
+                                                               
     void OnTriggerEnter(Collider other)
     {
         if(other.tag == "SpawnPoint")
@@ -72,5 +91,8 @@ public class PlayerController : MonoBehaviour
             DataManager.PlayerSpawnPosition = other.transform;
             DataManager.SpawnLocation = other.name;
         }
+
+        if(other.tag == "Enemy")
+            hit = true;
     }
 }
