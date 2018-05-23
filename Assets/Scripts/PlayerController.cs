@@ -94,5 +94,11 @@ public class PlayerController : MonoBehaviour
 
         if(other.tag == "Enemy")
             hit = true;
+
+        if (other.tag == "LeakedMagic")
+        {
+            Destroy(other.gameObject);
+            DataManager.Score += 1;
+        }
     }
 }

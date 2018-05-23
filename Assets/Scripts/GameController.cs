@@ -4,6 +4,10 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
 
+    [Header("Score")]
+        [Tooltip("This is the amount of leaked magic that the player has collected.")]
+        public int leakedMagic;
+
     [Header("Spawn Settings")]
         [Tooltip("This enables the tool below, allowing the choice of where the player spawns and locking them to that spawn point. This must be turned off while attempting a proper playthrough.")]
         public bool enabledAltSpawning = false;
@@ -38,10 +42,14 @@ public class GameController : MonoBehaviour {
 
     void Update()
     {
-        spawnLocation = DataManager.SpawnLocation;
+        if (spawnLocation != DataManager.SpawnLocation)
+            spawnLocation = DataManager.SpawnLocation;
 
         if (DataManager.GameOver == true)
             GameOver();
+
+        if (leakedMagic != DataManager.Score)
+            leakedMagic = DataManager.Score;
     }
 
     void GameOver()

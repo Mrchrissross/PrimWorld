@@ -5,6 +5,7 @@ public class DataManager : MonoBehaviour {
     private static string spawnPoint = "SpawnPoint (1)";
     private static Transform PlayerPosition = null;
     private static bool gameOver;
+    private static int score = 0;
 
     private void Start()
     {
@@ -44,6 +45,18 @@ public class DataManager : MonoBehaviour {
         set
         {
             gameOver = value;
+        }
+    }
+
+    public static int Score
+    {
+        get
+        {
+            return score;
+        }
+        set
+        {
+            score = value;
         }
     }
 }

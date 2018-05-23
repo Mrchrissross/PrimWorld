@@ -485,6 +485,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 0.8
   jumpHeight: 4.5
+  health: 3
 --- !u!65 &1042220127
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -567,6 +568,35 @@ Transform:
   - {fileID: 519420032}
   m_Father: {fileID: 1585939330}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1075459970
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1075459971}
+  m_Layer: 0
+  m_Name: MysticalMagic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1075459971
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1075459970}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.6498586, y: -0.53121704, z: 0.16210938}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2105091405}
+  m_Father: {fileID: 1585939330}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1113164545
 GameObject:
@@ -694,6 +724,48 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.1, y: 1.2, z: 1}
   m_Center: {x: 0, y: 0.3, z: 0}
+--- !u!1001 &1310002841
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1075459971}
+    m_Modifications:
+    - target: {fileID: 4459347054316918, guid: 1b1607418e39dab46a07bfdb8c166dca, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.54814184
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459347054316918, guid: 1b1607418e39dab46a07bfdb8c166dca, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 3.170217
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459347054316918, guid: 1b1607418e39dab46a07bfdb8c166dca, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0.16210938
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459347054316918, guid: 1b1607418e39dab46a07bfdb8c166dca, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459347054316918, guid: 1b1607418e39dab46a07bfdb8c166dca, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459347054316918, guid: 1b1607418e39dab46a07bfdb8c166dca, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459347054316918, guid: 1b1607418e39dab46a07bfdb8c166dca, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459347054316918, guid: 1b1607418e39dab46a07bfdb8c166dca, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 1b1607418e39dab46a07bfdb8c166dca, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1585939327
 GameObject:
   m_ObjectHideFlags: 0
@@ -733,6 +805,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 994782c9a66aaf94faa1741caf2419ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  leakedMagic: 0
   enabledAltSpawning: 0
   spawnPoint: 1
   spawnLocation: 
@@ -750,6 +823,7 @@ Transform:
   - {fileID: 901683666}
   - {fileID: 353853198}
   - {fileID: 965884902}
+  - {fileID: 1075459971}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -921,3 +995,8 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ab359e639ee51ce408b9a52b284c6bf9, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &2105091405 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4459347054316918, guid: 1b1607418e39dab46a07bfdb8c166dca,
+    type: 2}
+  m_PrefabInternal: {fileID: 1310002841}
