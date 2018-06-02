@@ -8,6 +8,9 @@ public class GameController : MonoBehaviour {
         [Tooltip("This is the amount of leaked magic that the player has collected.")]
         public int leakedMagic;
 
+        [Tooltip("This is all the magic that the player has collected over the course of the level.")]
+        public List<string> collectedMagic = new List<string>();
+
     [Header("Spawn Settings")]
         [Tooltip("This enables the tool below, allowing the choice of where the player spawns and locking them to that spawn point. This must be turned off while attempting a proper playthrough.")]
         public bool enabledAltSpawning = false;
@@ -32,6 +35,10 @@ public class GameController : MonoBehaviour {
         for (int i = 0; i < this.transform.Find("SpawnPoints").childCount; i++)
             Locations.Add(this.transform.Find("SpawnPoints").GetChild(i).name);
 
+        for (int i = 0; i < transform.Find("MysticalMagic").childCount; i++)
+            if (DataManager.CollectedMagic.Contains(transform.Find("MysticalMagic").GetChild(i).name))
+                transform.Find("MysticalMagic").GetChild(i).gameObject.SetActive(false);
+
         if (enabledAltSpawning)
             DataManager.SpawnLocation = Locations[spawnPoint - 1];
 
@@ -49,7 +56,15 @@ public class GameController : MonoBehaviour {
             GameOver();
 
         if (leakedMagic != DataManager.Score)
+        {
             leakedMagic = DataManager.Score;
+
+            for (int i = 0; i < transform.Find("MysticalMagic").childCount; i++)
+                if (DataManager.CollectedMagic.Contains(transform.Find("MysticalMagic").GetChild(i).name))
+                    transform.Find("MysticalMagic").GetChild(i).gameObject.SetActive(false);
+
+            collectedMagic = DataManager.CollectedMagic;
+        }
     }
 
     void GameOver()

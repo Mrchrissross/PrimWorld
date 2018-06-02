@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class DataManager : MonoBehaviour {
 
@@ -6,6 +7,7 @@ public class DataManager : MonoBehaviour {
     private static Transform PlayerPosition = null;
     private static bool gameOver;
     private static int score = 0;
+    private static List<string> collectedMagic = new List<string>();
 
     private void Start()
     {
@@ -57,6 +59,18 @@ public class DataManager : MonoBehaviour {
         set
         {
             score = value;
+        }
+    }
+
+    public static List<string> CollectedMagic
+    {
+        get
+        {
+            return collectedMagic;
+        }
+        set
+        {
+            collectedMagic = value;
         }
     }
 }
