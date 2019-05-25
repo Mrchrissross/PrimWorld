@@ -66,13 +66,10 @@ public class PlayerController : MonoBehaviour
 	void Update ()
     {
         #region Movement
-        if (Input.GetButtonDown("Crouch"))
-        {
-            if (crouching)
-                crouching = false;
-            else
-                crouching = true;
-        }
+        if (Input.GetButton("Crouch"))
+            crouching = true;
+        else
+            crouching = false;
 
         if (movementEnabled)
             xMov = Input.GetAxis("Horizontal");
